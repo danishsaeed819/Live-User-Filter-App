@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Real-time user search and instant filtering — pure vanilla JavaScript, zero page reloads." />
+  <title>Live User Filter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="app">
+    <header class="header">
+      <div class="header__row">
+        <div class="header__badge">Zero dependencies</div>
+        <span id="team-count" class="header__count" aria-live="polite"></span>
+      </div>
+      <h1 class="header__title">Live User Filter</h1>
+      <p class="header__subtitle">
+        Real-time search across names, roles, and locations — instant filters, no page reload.
+      </p>
+
+      <ul class="features" aria-label="App highlights">
+        <li class="features__item">⚡ Real-time search</li>
+        <li class="features__item">🔄 No page reload</li>
+        <li class="features__item">📦 Pure JavaScript</li>
+        <li class="features__item">📱 Responsive UI</li>
+        <li class="features__item">🚀 Fast DOM updates</li>
+      </ul>
+    </header>
+
+    <section class="controls panel" aria-label="Search and filter controls">
+      <div class="search-wrap">
+        <svg class="search-wrap__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="M20 20l-3-3"/>
+        </svg>
+        <input
+          type="search"
+          id="search"
+          class="search-wrap__input"
+          placeholder="Search by name, role, city, or country…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-describedby="search-hint"
+        />
+        <button type="button" id="clear-search" class="search-wrap__clear" hidden aria-label="Clear search">×</button>
+        <kbd class="search-wrap__kbd" aria-hidden="true">/</kbd>
+      </div>
+      <p id="search-hint" class="visually-hidden">Results update as you type. Press Escape to clear.</p>
+
+      <div class="filter-row">
+        <div class="filter-group filter-group--large" role="group" aria-label="Filter by role">
+          <span class="filter-group__label">Role</span>
+          <div class="chip-list chip-list--large" id="role-filters"></div>
+        </div>
+        <div class="filter-group filter-group--large" role="group" aria-label="Filter by status">
+          <span class="filter-group__label">Status</span>
+          <div class="chip-list chip-list--large" id="status-filters"></div>
+        </div>
+        <div class="filter-group filter-group--large" role="group" aria-label="Filter by country">
+          <span class="filter-group__label">Country</span>
+          <div class="chip-list chip-list--large chip-list--scroll" id="country-filters"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-bar">
+      <span id="result-count" class="stats-bar__count">—</span>
+      <span id="perf-indicator" class="stats-bar__perf" aria-live="polite"></span>
+      <span id="debounce-indicator" class="stats-bar__debounce" aria-live="polite"></span>
+    </div>
+
+    <main class="main">
+      <ul id="user-list" class="user-list" role="list" aria-live="polite" aria-relevant="additions removals"></ul>
+
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-state__icon" aria-hidden="true">∅</div>
+        <h2 class="empty-state__title">No matches</h2>
+        <p class="empty-state__text">Try a different keyword or clear your filters.</p>
+        <button type="button" id="reset-btn" class="btn btn--ghost">Reset filters</button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span><kbd>/</kbd> focus search</span>
+      <span><kbd>Esc</kbd> clear</span>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
