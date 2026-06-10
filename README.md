@@ -47,9 +47,6 @@ This project demonstrates the implementation of real-time search and filtering f
 - Dark Mode
 
 ## Author
-
-
-
 GitHub: https://github.com/DanishSaeed819
 
 
