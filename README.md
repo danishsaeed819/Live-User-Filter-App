@@ -48,7 +48,7 @@ This project demonstrates the implementation of real-time search and filtering f
 
 ## Author
 
-Danish Saeed
+
 
 GitHub: https://github.com/DanishSaeed819
 
